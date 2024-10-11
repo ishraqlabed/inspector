@@ -1,0 +1,234 @@
+
+
+entity Inspector {
+	IdInspector Integer
+    FirstName String 
+    LastName String 
+    Province  String
+    Region   String
+}
+
+entity Prof {
+	IdProf Integer
+    FirstName String
+    LastName String
+    LastNameBeforMariage String
+    Region  String
+    Type String 
+    DateFirstAppointment LocalDate
+    Profession String 
+    Rank String
+    Degree Integer
+    DateDegree LocalDate
+    DateInternship LocalDate
+    DateInstallation LocalDate
+    DateLastInspection LocalDate
+    Mark Float
+    MarkAdministrative Float
+    AcademicQualification String
+    Specialization String
+    Phone Integer 
+    Email String
+    Nationality String
+    IsStillWorking Boolean   
+}
+ entity School {
+ 	IdSchool Integer
+    SchoolName String
+    SchoolAdministrator String
+    SchoolPhone String
+    SchoolEmail String 
+ }
+ entity City {
+ 	IdCity Integer
+    CityName String 
+ }
+ entity TimeTable {
+ 	Session1 String
+    Session2 String
+    Session3 String
+    Session4 String
+    Session5 String
+    Session6 String
+    Session7 String
+    Session8 String
+    Session9 String
+    Session10 String
+    Session11 String
+    Session12 String
+    Session13 String
+    Session14 String
+    Session15 String
+    Session16 String
+    Session17 String
+    Session18 String
+    Session19 String
+    Session20 String
+    Session21 String
+    Session22 String
+    Session23 String
+    Session24 String
+    Session25 String
+    Session26 String
+    Session27 String
+    Session28 String
+    Session29 String
+    Session30 String
+    Session31 String
+    Session32 String
+    Session33 String
+    Session34 String
+    Session35 String
+ }
+ entity AcademicYear {
+ 	IdAcademicYear Integer
+    StartDate LocalDate
+    EndDate LocalDate
+    Term2StartDate LocalDate
+    Term3StartDate LocalDate
+ }
+ entity VisitProf {
+ 	IdVisit Integer
+    DateVisit LocalDate
+    TypeVisit String
+    Mark Integer
+    MarkLetters String
+    Durationn String
+    Class String
+    NumberStudents Integer
+    IsSuitableForListening Boolean
+    IsLightingSuitable Boolean
+    IsClean  Boolean
+    IsSuitableHeating Boolean
+    IsVentilated Boolean
+    LessonType String
+    LessonSubject String
+    LessonScheduled  Boolean
+    ISProgramDistributed String
+    IsDistributionRespected String
+    IsMemoExist Boolean
+    MemoValue String
+    InformationsValue String
+    IsSequenceLogical String
+    IsObjectivesAchieved String
+    StudentParticipation String
+    IsThereApplications Boolean
+    IsApplicationsSuitable String
+    Blackboard String
+    Book String
+    OtherTeachingAids String
+    IsTextbookUsedWell String
+    AreInformationsSimilar String
+    IsMonitoredScheduledProgram Boolean
+    IsMonitoredGradual String
+    IsMonitoredExercises String
+    IsStudentsNBMonitored String
+    IsTakenCareOf String
+    IsHomeworkEnough String
+    IsHomeworkCorrected String
+    IsHomeworkkept String
+    Instructions String
+    Conclusion String
+ }
+entity VisitProfExam {
+	IdVisitExam Integer
+    VisitDate LocalDate
+    IdProf1 Integer
+    IdProf2 Integer
+    FirstLessonType String
+    SecondLessonType String
+    FirstLessonSubject String
+    SecondLessonSubject String
+    FirstLessonClass String
+    SecondLessonClass String
+    FirstLessonStartTime String
+    SecondLessonStartTime String 
+    FirstLessonMark Float
+    SecondLessonMark Float
+    FirstOralQuestion String 
+    FirstOralQuestion String 
+    OralQuestionMark Integer
+    ProfCulturalValue String 
+    ProfEducationalValue String 
+    CommitteeDecision String 
+    GeneralInspectorReport String
+    IsSucceed Boolean
+}
+entity Formation {
+	IdFormation Integer
+    StartDate LocalDate
+    EndDate LocalDate
+    Place String 
+    NumberOfDays Integer
+    TypeOfFormaion String
+    IsTraineeConcerned Boolean 
+    IsPermanentConcerned Boolean 
+    IsContractedConcerned Boolean 
+    StudiedItems String 
+    Objectives String 
+    MethodAndMeans String 
+    FinancialCoverage Boolean
+    AuxiliaryMeans String 
+    AchievedGoals String 
+    WorkAndBehavior String  
+    Notes String    
+}
+entity Farming {
+
+}
+entity FormationAttendence {
+
+}
+entity VisitSchool {
+	IdVisit Integer
+    DateVisit LocalDate
+    Subject String 
+    ActionsTaken String
+    Suggestions String
+    DirectedTO String
+    IsExceptionalVisit Boolean   
+}
+entity VisitLaboratories {
+	IdVisitLaboratories Integer
+    DateVisit LocalDate
+    Notes String
+}
+
+
+relationship ManyToOne {
+	VisitProf{IdProf} to Prof
+}
+relationship ManyToOne {
+	TimeTable{IdProf} to Prof
+    TimeTable{IdAcademicYear} to AcademicYear    
+}
+
+relationship ManyToOne {
+	VisitProfExam{IdProf} to Prof
+}
+relationship ManyToOne {
+	Farming{IdProf} to Prof
+    Farming{IdFormation} to Formation
+}
+relationship ManyToOne {
+	FormationAttendence{IdProf} to Prof
+    FormationAttendence{IdFormation} to Formation   
+}
+relationship ManyToOne {
+	VisitSchool{IdSchool} to School
+}
+relationship ManyToOne {
+	Prof{IdSchool} to School
+}
+relationship ManyToOne {
+	VisitLaboratories{IdSchool} to School
+}
+relationship ManyToOne {
+	School{IdCity} to City
+}
+relationship ManyToOne {
+	City {idInspector} to Inspector
+}
+
+paginate  all with pagination
+
